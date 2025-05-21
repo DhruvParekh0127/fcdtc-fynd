@@ -16,6 +16,17 @@ const shopify = shopifyApp({
   authPathPrefix: "/auth",
   sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
+  extensions: {
+    ui: {
+      blocks: {
+        "banner-block": {
+          title: "Custom Banner",
+          type: "app_block",
+          surface: "theme",
+        }
+      }
+    }
+  },
   future: {
     unstable_newEmbeddedAuthStrategy: true,
     removeRest: true,
