@@ -1,0 +1,22 @@
+# extensions/banner/shopify.extension.toml
+
+type = "theme"
+name = "Banner Block"
+
+[[extensions]]
+type = "theme"
+name = "Banner Block"
+handle = "banner-block"
+
+[[extensions.targeting]]
+module = ["*"]
+target = "section"
+
+[extensions.development]
+entries = [
+  {handle = "block", module = "./blocks/banner.liquid", target = "block"}
+]
+
+[extensions.development.block.settings]
+libraries = ["react"]
+localization = false
