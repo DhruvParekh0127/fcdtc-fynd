@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "44e37553a294054ac8294f8779a36a3a"
-application_url = "https://surely-assessed-bite-pin.trycloudflare.com"
+application_url = "https://technology-supervisors-booty-witch.trycloudflare.com"
 embedded = true
 name = "fcdtc-fynd"
 handle = "fcdtc-fynd"
@@ -19,13 +19,13 @@ api_version = "2025-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products"
+scopes = "write_products,read_themes"
 
 [auth]
 redirect_urls = [
-  "https://surely-assessed-bite-pin.trycloudflare.com/auth/callback",
-  "https://surely-assessed-bite-pin.trycloudflare.com/auth/shopify/callback",
-  "https://surely-assessed-bite-pin.trycloudflare.com/api/auth/callback"
+  "https://technology-supervisors-booty-witch.trycloudflare.com/auth/callback",
+  "https://technology-supervisors-booty-witch.trycloudflare.com/auth/shopify/callback",
+  "https://technology-supervisors-booty-witch.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
@@ -34,3 +34,4 @@ embedded = false
 [build]
 dev_store_url = "app-widget-import.myshopify.com"
 automatically_update_urls_on_dev = true
+include_config_on_deploy = true
