@@ -1,3 +1,4 @@
+// app/routes/app.banner.jsx
 import { useEffect, useState } from "react";
 import { json } from "@remix-run/node";
 import { useActionData, useLoaderData, useNavigation, useSubmit } from "@remix-run/react";
@@ -111,7 +112,7 @@ export default function BannerManagementPage() {
   // Convert hex color to HSB for the color picker
   const hexToHsb = (hex) => {
     const rgb = hexToRgb(hex);
-    return rgbToHsb(rgb);
+    return rgb ? rgbToHsb(rgb) : { hue: 0, saturation: 0, brightness: 0 };
   };
   
   // Convert HSB color to hex for storing
@@ -328,7 +329,7 @@ export default function BannerManagementPage() {
                   flexDirection: "column",
                   justifyContent: "center"
                 }}>
-                  <Text as="h3" variant="headingMd" style={{color: formValues.text_color}}>
+                  <Text as="h3" variant="headingMd" fontWeight="bold" style={{color: formValues.text_color}}>
                     {formValues.heading || "Banner Heading"}
                   </Text>
                   <Text as="p" style={{color: formValues.text_color}}>

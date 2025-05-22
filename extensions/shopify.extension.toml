@@ -1,22 +1,26 @@
 # extensions/banner/shopify.extension.toml
 
-type = "theme"
-name = "Banner Block"
+type = "ui_extension"
+name = "Banner Extension"
+handle = "banner-extension"
 
+# This extension is available to merchants directly through the theme editor
 [[extensions]]
 type = "theme"
-name = "Banner Block"
+name = "Custom Banner"
 handle = "banner-block"
 
+# Configure where the extension can appear in the theme
 [[extensions.targeting]]
-module = ["*"]
-target = "section"
+module = ["*"]           # Can be added to any module
+target = "section"       # It's a theme section block
 
+# Configure the extension during development
 [extensions.development]
 entries = [
   {handle = "block", module = "./blocks/banner.liquid", target = "block"}
 ]
 
 [extensions.development.block.settings]
-libraries = ["react"]
+type = "liquid"
 localization = false

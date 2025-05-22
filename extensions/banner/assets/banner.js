@@ -5,21 +5,30 @@ class CustomBanner extends HTMLElement {
     super();
     
     // Get the settings from the data attribute
-    this.settings = JSON.parse(this.getAttribute('data-banner-settings') || '{}');
+    try {
+      this.settings = JSON.parse(this.getAttribute('data-banner-settings') || '{}');
+    } catch (error) {
+      console.error('Error parsing banner settings:', error);
+      this.settings = {
+        heading: '',
+        description: '',
+        banner_height: 'medium',
+        text_color: '#ffffff',
+        background_color: '#4a4a4a'
+      };
+    }
     
     // Initialize the banner
     this.init();
   }
   
   init() {
-    // Add any additional JavaScript functionality here
-    
-    // For example, you could add animation classes after the component loads
+    // Add animation classes after component loads
     setTimeout(() => {
       this.classList.add('banner-loaded');
     }, 100);
     
-    // You could also add event listeners for interaction
+    // Add event listeners for interaction
     this.addEventListener('click', this.handleBannerClick.bind(this));
   }
   
@@ -27,7 +36,7 @@ class CustomBanner extends HTMLElement {
     // Example of interaction handling
     console.log('Banner clicked:', this.settings);
     
-    // You could trigger custom events here that your app might listen for
+    // Dispatch custom event that the app might listen for
     const customEvent = new CustomEvent('banner:click', {
       detail: {
         blockId: this.id,
@@ -61,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
       newBanner.innerHTML = block.innerHTML;
       
       // Replace the original element
-      block.parentNode.replaceChild(newBanner, block);
+      if (block.parentNode) {
+        block.parentNode.replaceChild(newBanner, block);
+      }
     }
   });
 });
