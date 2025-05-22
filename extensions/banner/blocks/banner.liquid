@@ -1,95 +1,40 @@
 {% comment %}
   extensions/banner/blocks/banner.liquid
+  This file creates an APP BLOCK that can be embedded in any section
 {% endcomment %}
 
-{% schema %}
-{
-  "name": "Custom Banner",
-  "target": "section",
-  "stylesheet": "banner.css",
-  "javascript": "banner.js",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Banner Heading",
-      "default": "Welcome to our store"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Banner Description",
-      "default": "Check out our latest products and special offers."
-    },
-    {
-      "type": "image_picker",
-      "id": "banner_image",
-      "label": "Banner Image"
-    },
-    {
-      "type": "select",
-      "id": "banner_height",
-      "label": "Banner Height",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "medium"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#4a4a4a"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Custom Banner",
-      "category": "Custom Content"
-    }
-  ]
-}
-{% endschema %}
+{%- liquid
+  assign banner_width = block.settings.banner_width | default: 1200
+  assign banner_height = block.settings.banner_height_px | default: 600
+  assign heading_text = block.settings.heading | default: 'Welcome to our store'
+  assign description_text = block.settings.description | default: 'Check out our latest products and special offers.'
+-%}
 
 <div 
-  id="app-block-{{block.id}}" 
-  class="app-block banner-block banner-height-{{block.settings.banner_height}}"
+  id="app-block-{{ block.id }}" 
+  class="app-block banner-block banner-height-{{ block.settings.banner_height }}"
   data-banner-settings='{{ block.settings | json }}'
-  style="background-color: {{block.settings.background_color}};"
+  style="background-color: {{ block.settings.background_color }};"
 >
-  <div class="banner-content" style="color: {{block.settings.text_color}};">
+  <div class="banner-content" style="color: {{ block.settings.text_color }};">
     {% if block.settings.heading != blank %}
-      <h2 class="banner-heading">{{ block.settings.heading }}</h2>
+      <h2 class="banner-heading">{{ heading_text }}</h2>
     {% endif %}
     
     {% if block.settings.description != blank %}
-      <div class="banner-description">{{ block.settings.description }}</div>
+      <div class="banner-description">{{ description_text }}</div>
     {% endif %}
   </div>
   
   {% if block.settings.banner_image %}
     <div class="banner-image-container">
       <img 
-        src="{{ block.settings.banner_image | img_url: 'master' }}" 
-        alt="{{ block.settings.heading }}"
+        src="{{ block.settings.banner_image | image_url: width: banner_width, height: banner_height }}" 
+        alt="{{ heading_text | escape }}"
         class="banner-image"
+        width="{{ banner_width }}"
+        height="{{ banner_height }}"
+        loading="lazy"
       >
     </div>
   {% endif %}
@@ -103,6 +48,7 @@
     width: 100%;
     overflow: hidden;
     padding: 30px;
+    margin: 10px 0;
   }
   
   .banner-height-small {
@@ -157,3 +103,80 @@
     }
   }
 </style>
+
+{% schema %}
+{
+  "name": "Custom Banner Block",
+  "target": "section",
+  "javascript": "banner.js",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Banner Heading",
+      "default": "Welcome to our store"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Banner Description",
+      "default": "Check out our latest products and special offers."
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "range",
+      "id": "banner_width",
+      "label": "Banner Width (px)",
+      "min": 600,
+      "max": 1800,
+      "step": 100,
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "banner_height_px",
+      "label": "Banner Height (px)",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "default": 600
+    },
+    {
+      "type": "select",
+      "id": "banner_height",
+      "label": "Banner Height Style",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#4a4a4a"
+    }
+  ]
+}
+{% endschema %}

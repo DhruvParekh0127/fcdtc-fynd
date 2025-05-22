@@ -1,0 +1,28 @@
+{
+  "name": "Custom Banner",
+  "settings": {
+    "heading": {
+      "label": "Banner Heading"
+    },
+    "description": {
+      "label": "Banner Description"
+    },
+    "banner_image": {
+      "label": "Banner Image"
+    },
+    "banner_height": {
+      "label": "Banner Height",
+      "options": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      }
+    },
+    "text_color": {
+      "label": "Text Color"
+    },
+    "background_color": {
+      "label": "Background Color"
+    }
+  }
+}

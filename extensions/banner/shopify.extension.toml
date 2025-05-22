@@ -1,0 +1,7 @@
+# extensions/banner/shopify.extension.toml
+
+name = "Custom Banner Extension"
+type = "theme_app_extension"
+
+[build]
+automatically_update_urls_on_dev = true
