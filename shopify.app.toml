@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "44e37553a294054ac8294f8779a36a3a"
-application_url = "https://bits-actions-wet-printable.trycloudflare.com"
+application_url = "https://gotta-conventions-develops-miss.trycloudflare.com"
 embedded = true
 name = "fcdtc-fynd"
 handle = "fcdtc-fynd"
@@ -23,9 +23,9 @@ scopes = "write_products,read_themes"
 
 [auth]
 redirect_urls = [
-  "https://bits-actions-wet-printable.trycloudflare.com/auth/callback",
-  "https://bits-actions-wet-printable.trycloudflare.com/auth/shopify/callback",
-  "https://bits-actions-wet-printable.trycloudflare.com/api/auth/callback"
+  "https://gotta-conventions-develops-miss.trycloudflare.com/auth/callback",
+  "https://gotta-conventions-develops-miss.trycloudflare.com/auth/shopify/callback",
+  "https://gotta-conventions-develops-miss.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
